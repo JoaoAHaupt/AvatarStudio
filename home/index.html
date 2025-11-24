@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="bg-[#282a36] text-[#f8f8f2] dark:bg-[#1e1f29] dark:text-[#f8f8f2]">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roblox Avatars Hub — Carrossel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center font-sans transition-colors duration-300">
+<header class="w-full py-6 text-center bg-[#44475a] backdrop-blur-md shadow-md">
+    <h1 class="text-4xl font-bold tracking-widest uppercase">Roblox Avatars Hub</h1>
+    <p class="mt-2 text-lg opacity-70">Carrossel de Avatares</p>
+</header>
+
+<section id="avatars" class="w-[90%] max-w-[1000px] mt-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"></section>
+
+<script>
+    // Carrega JSON e renderiza avatares
+    fetch("../static/db/db.json")
+
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("avatars");
+            container.innerHTML = "";
+
+        data.avatars.forEach(avatar => {
+            const card = document.createElement("div");
+            card.className = `
+                bg-[#44475a]
+                p-5
+                rounded-xl
+                text-center
+                border
+                border-[#6272a4]
+                shadow-md
+                transition-all
+                duration-300
+                hover:scale-[1.03]
+                hover:shadow-lg
+                hover:border-[#8193d1]
+                cursor-pointer
+            `;
+
+            // Conteúdo do card
+            card.innerHTML = `
+                <h2 class="text-xl font-bold mb-3 text-[#bd93f9]">${avatar.nome}</h2>
+                <div class="flex flex-col gap-3">
+                    <img src="../static/images/art/${avatar.nome}.jpg" class="rounded-lg shadow-lg w-full" alt="${avatar.nome} art">
+                </div>
+            `;
+
+            // Ao clicar, vai para a página do avatar passando o nome como query
+            card.addEventListener("click", () => {
+                const slug = avatar.nome.replace(/\s+/g, "").replace(/[^a-zA-Z0-9]/g, "");
+                window.location.href = `/avatar/?nome=${slug}`;
+            });
+
+
+            container.appendChild(card);
+        });
+
+        });
+</script>
+
+
+<footer class="my-12 opacity-60 text-sm">© 2025 — Criado com ❤</footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "avatars": [
+    {
+      "id": 1,
+      "nome": "Crimson Wanderer",
+      "descricao": "Um avatar que reflete a intensidade das emoções profundas..."
+
+    },
+    {
+      "id": 2,
+      "nome": "MidnightEcho",
+      "descricao": "Silencioso e observador, representa a calma antes da tempestade..."
+    }
+  ]
+}

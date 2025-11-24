@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="bg-[#282a36] text-[#f8f8f2]">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avatar - Detalhes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center font-sans">
+
+<!-- Header igual ao da index -->
+<header class="w-full py-6 text-center bg-[#44475a] shadow-md">
+    <h1 class="text-4xl font-bold tracking-widest uppercase" id="headerName">Carregando...</h1>
+    <p class="mt-2 text-lg opacity-70">Galeria de avatares do Roblox</p>
+</header>
+
+<!-- Botão para voltar -->
+<a href="../home/index.html" class="mt-6 mb-4 px-5 py-2 rounded-lg bg-[#6272a4] hover:bg-[#7082c4] transition-colors font-semibold shadow-md">
+    ← Voltar ao Menu
+</a>
+
+<h1 id="avatarName" class="text-4xl font-bold tracking-wide mb-8 text-[#ff79c6] text-center">Carregando...</h1>
+
+<section class="w-[90%] max-w-[900px] bg-[#44475a] border border-[#6272a4] p-6 rounded-xl shadow-xl">
+
+    <p id="avatarDesc" class="text-lg md:text-2xl opacity-90 leading-relaxed text-justify indent-8">
+        Carregando descrição...
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <img id="img1" class="rounded-lg shadow-xl w-full border border-[#6272a4]" />
+        <img id="img2" class="rounded-lg shadow-xl w-full border border-[#6272a4]" />
+    </div>
+
+</section>
+
+<footer class="my-12 opacity-60 text-sm">© 2025 — Criado com ❤</footer>
+
+
+<!-- SCRIPT PARA CARREGAR AVATAR -->
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+
+    const rawName = params.get("nome");
+    console.log(rawName)
+    // transforma em slug: crimson-wanderer
+    const safeName = rawName?.toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "");
+
+    fetch("../static/db/db.json") // AJUSTE O CAMINHO AQUI se necessário
+        .then(res => res.json())
+        .then(data => {
+
+            const avatar = data.avatars.find(
+                a => a.nome.toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/\s+/g, "-")
+                    .replace(/[^a-z0-9-]/g, "") === safeName
+            );
+
+            if (!avatar) {
+                document.body.innerHTML = `
+                    <div class="text-center mt-20">
+                        <h1 class="text-6xl font-bold text-red-400 mb-4">404</h1>
+                        <p class="text-xl opacity-80">Avatar não encontrado.</p>
+                        <a href="../index.html" class="mt-6 inline-block px-5 py-2 bg-[#6272a4] rounded-lg">Voltar ao Menu</a>
+                    </div>`;
+                return;
+            }
+
+            document.getElementById("avatarName").textContent = avatar.nome;
+            document.getElementById("headerName").textContent = avatar.nome;
+            document.getElementById("avatarDesc").textContent = avatar.descricao;
+            document.getElementById("img1").src = avatar.img1;
+            document.getElementById("img2").src = avatar.img2;
+        })
+        .catch(err => console.error("Erro ao carregar JSON:", err));
+</script>
+
+
+
+</body>
+</html>

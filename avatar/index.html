@@ -34,10 +34,9 @@
 
 </section>
 
-<footer class="my-12 opacity-60 text-sm">© 2025 — Criado com ❤</footer>
+<footer class="my-12 opacity-60 text-sm">© 2025 — Criado por Ana Luisa e JoaoAHaupt</footer>
 
 
-<!-- SCRIPT PARA CARREGAR AVATAR -->
 <script>
     const params = new URLSearchParams(window.location.search);
 
@@ -60,7 +59,7 @@
                     .replace(/\s+/g, "-")
                     .replace(/[^a-z0-9-]/g, "") === safeName
             );
-
+            console.log(avatar);
             if (!avatar) {
                 document.body.innerHTML = `
                     <div class="text-center mt-20">
@@ -74,8 +73,9 @@
             document.getElementById("avatarName").textContent = avatar.nome;
             document.getElementById("headerName").textContent = avatar.nome;
             document.getElementById("avatarDesc").textContent = avatar.descricao;
-            document.getElementById("img1").src = avatar.img1;
-            document.getElementById("img2").src = avatar.img2;
+            document.getElementById("img1").src = `../static/images/art/${avatar.nome}.jpg`;
+
+            document.getElementById("img2").src = `../static/images/avatar/${avatar.nome}.png`;
         })
         .catch(err => console.error("Erro ao carregar JSON:", err));
 </script>

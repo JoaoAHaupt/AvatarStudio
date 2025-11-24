@@ -1,15 +1,99 @@
 {
   "avatars": [
     {
-      "id": 1,
-      "nome": "Crimson Wanderer",
-      "descricao": "Um avatar que reflete a intensidade das emoções profundas..."
-
-    },
-    {
       "id": 2,
       "nome": "MidnightEcho",
       "descricao": "Silencioso e observador, representa a calma antes da tempestade..."
+    },
+    {
+      "id": 3,
+      "nome": "1Alice513",
+      "descricao": "Uma presença curiosa e energética, sempre pronta para explorar qualquer mundo."
+    },
+    {
+      "id": 4,
+      "nome": "bacon_amassa2v1",
+      "descricao": "Um avatar divertido e irreverente, símbolo de caos e humor."
+    },
+    {
+      "id": 5,
+      "nome": "Benicio",
+      "descricao": "Determinado e confiante, representa força e lealdade."
+    },
+    {
+      "id": 6,
+      "nome": "charlieeeue",
+      "descricao": "Um espírito brincalhão e curioso, cheio de energia criativa."
+    },
+    {
+      "id": 7,
+      "nome": "Feli",
+      "descricao": "Elegante e sereno, transmite paz e sensibilidade emocional."
+    },
+    {
+      "id": 8,
+      "nome": "FelixSkz",
+      "descricao": "Carismático e vibrante, sempre chamando atenção por onde passa."
+    },
+    {
+      "id": 9,
+      "nome": "Flutter",
+      "descricao": "Leve e ágil, como um vento rápido cruzando mundos digitais."
+    },
+    {
+      "id": 10,
+      "nome": "KENININI738894",
+      "descricao": "Misterioso e imprevisível, um verdadeiro enigma em forma de avatar."
+    },
+    {
+      "id": 11,
+      "nome": "kikililamora",
+      "descricao": "Doce e sonhador, sempre rodeado de fantasia e imaginação."
+    },
+    {
+      "id": 12,
+      "nome": "luismonas28",
+      "descricao": "Simpático e descontraído, transmite leveza e humor."
+    },
+    {
+      "id": 13,
+      "nome": "lunimoth",
+      "descricao": "Místico e silencioso, como uma criatura que vagueia na noite."
+    },
+    {
+      "id": 14,
+      "nome": "LUNITA20202204",
+      "descricao": "Brilhante e energética, como um pequeno cometa viajando pelo universo."
+    },
+    {
+      "id": 15,
+      "nome": "mitocondria",
+      "descricao": "A powerhouse do avatar, cheio de energia e vitalidade."
+    },
+    {
+      "id": 16,
+      "nome": "Ohmy_Keirine",
+      "descricao": "Elegante e expressiva, carregando um estilo único e marcante."
+    },
+    {
+      "id": 17,
+      "nome": "Oooooooeach",
+      "descricao": "Exótico e imprevisível, uma verdadeira força caótica."
+    },
+    {
+      "id": 18,
+      "nome": "papo2101231",
+      "descricao": "Tranquilo e observador, sempre analisando tudo ao redor."
+    },
+    {
+      "id": 19,
+      "nome": "skibidi_toilet777097",
+      "descricao": "Caótico e engraçado, perfeito para quem vive memes."
+    },
+    {
+      "id": 20,
+      "nome": "UwU",
+      "descricao": "Fofo e acolhedor, transmite pureza e boas vibrações."
     }
   ]
 }

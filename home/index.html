@@ -1,73 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="bg-[#282a36] text-[#f8f8f2] dark:bg-[#1e1f29] dark:text-[#f8f8f2]">
+<html lang="pt-BR" class="bg-[#1c1b22] text-[#f8f8f2]">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roblox Avatars Hub — Carrossel</title>
+    <title>AvatarStudio — Galeria</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col items-center font-sans transition-colors duration-300">
-<header class="w-full py-6 text-center bg-[#44475a] backdrop-blur-md shadow-md">
-    <h1 class="text-4xl font-bold tracking-widest uppercase">Roblox Avatars Hub</h1>
-    <p class="mt-2 text-lg opacity-70">Carrossel de Avatares</p>
+<body class="flex flex-col items-center font-sans">
+
+<header class="w-full py-10 text-center bg-[#2a2933] shadow-lg border-b border-[#444]">
+    <h1 class="text-5xl font-extrabold tracking-widest uppercase text-[#e9e7ff] drop-shadow-lg">
+        AvatarStudio
+    </h1>
+    <p class="mt-3 text-lg opacity-70 italic tracking-wide text-[#cfcde7]">
+        Galeria Artística de Avatares
+    </p>
 </header>
 
-<section id="avatars" class="w-[90%] max-w-[1000px] mt-10 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"></section>
+<section class="w-[92%] max-w-[1200px] mt-14 grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <!-- JS irá preencher aqui -->
+</section>
 
 <script>
-    // Carrega JSON e renderiza avatares
     fetch("../static/db/db.json")
-
         .then(res => res.json())
         .then(data => {
-            const container = document.getElementById("avatars");
+            const container = document.querySelector("section");
             container.innerHTML = "";
 
-data.avatars.forEach(avatar => {
-    const card = document.createElement("div");
-    card.className = `
-        bg-[#44475a]
-        p-5
-        rounded-2xl
-        text-center
-        border border-[#6272a4]
-        shadow-lg
-        transition-all duration-300
-        hover:scale-[1.05]
-        hover:shadow-2xl
-        hover:border-[#bd93f9]
-        hover:bg-[#51536b]
-        cursor-pointer
-        group
-    `;
+            data.avatars.forEach(avatar => {
+                const card = document.createElement("div");
+                card.className = `
+                    bg-[#2f2e38]
+                    p-6
+                    rounded-3xl
+                    border border-[#3f3d4a]
+                    shadow-xl
+                    transition-all duration-500
+                    hover:scale-[1.07]
+                    hover:shadow-2xl
+                    hover:border-[#9f8cff]
+                    hover:bg-[#3a3847]
+                    cursor-pointer
+                    group
+                `;
 
-    card.innerHTML = `
-        <h2 class="text-xl font-bold mb-4 text-[#bd93f9] transition-colors duration-300 group-hover:text-[#ff79c6]">
-            ${avatar.nome}
-        </h2>
+                card.innerHTML = `
+                    <div class="relative mb-4 w-full h-64 overflow-hidden rounded-2xl border border-[#4b4a57] shadow-md">
+                        <img
+                            src="../static/images/avatar/${avatar.nome}.png"
+                            alt="${avatar.nome}"
+                            class="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
 
-        <div class="w-full h-56 overflow-hidden rounded-xl border border-[#6272a4] shadow-md">
-            <img
-                src="../static/images/avatar/${avatar.nome}.png"
-                alt="${avatar.nome} avatar"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            >
-        </div>
-    `;
+                    <h2 class="text-2xl font-bold mt-2 text-[#c7bfff] group-hover:text-[#ffb3f9] tracking-wide text-center">
+                        ${avatar.nome}
+                    </h2>
+                `;
 
-    card.addEventListener("click", () => {
-        const slug = avatar.nome.replace(/\s+/g, "").replace(/[^a-zA-Z0-9]/g, "");
-        window.location.href = `/avatar/?nome=${slug}`;
-    });
+                card.addEventListener("click", () => {
+                    const slug = avatar.nome
+                        .toLowerCase()
+                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "");
 
-    container.appendChild(card);
-});
+                    window.location.href = `../avatar/index.html?nome=${slug}`;
+                });
 
-
+                container.appendChild(card);
+            });
         });
 </script>
 
+<footer class="my-16 opacity-60 text-sm tracking-wide text-[#cfcde7]">
+    © 2025 — Criado por Ana Luisa e JoaoAHaupt
+</footer>
 
-<footer class="my-12 opacity-60 text-sm">© 2025 — Criado por Ana Luisa e JoaoAHaupt</footer>
 </body>
 </html>

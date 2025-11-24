@@ -1,68 +1,119 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="bg-[#282a36] text-[#f8f8f2]">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Avatar - Detalhes</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="min-h-screen flex flex-col items-center font-sans">
 
-<!-- Header igual ao da index -->
-<header class="w-full py-6 text-center bg-[#44475a] shadow-md">
-    <h1 class="text-4xl font-bold tracking-widest uppercase" id="headerName">Carregando...</h1>
-    <p class="mt-2 text-lg opacity-70">Galeria de avatares do Roblox</p>
+    <style>
+        /* Fundo com degrade artístico mais claro */
+        body {
+            background: linear-gradient(135deg, #3b3e55, #4a4e6d, #5a5f82);
+            background-size: 200% 200%;
+            animation: bgMove 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgMove {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+
+        /* Fade-in geral */
+        .fadein {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Neon suave */
+        .neon {
+            color: #ff79c6;
+            text-shadow:
+                0 0 4px #ff79c6,
+                0 0 10px #ff79c6,
+                0 0 18px #ff4cc6;
+            animation: neonFlicker 4s infinite;
+        }
+
+        @keyframes neonFlicker {
+            0%, 19%, 22%, 63%, 64%, 70%, 100% { opacity: 1; }
+            20%, 21%, 65%, 69% { opacity: .5; }
+        }
+
+        /* Glassmorphism claro */
+        .glass {
+            background: rgba(255, 255, 255, 0.10); /* mais claro */
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.10),
+                        0 0 25px rgba(0, 0, 0, 0.15) inset;
+        }
+
+        /* Hover artístico nas imagens */
+        .img-hover:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px #ffffff60);
+        }
+    </style>
+
+</head>
+
+<body class="min-h-screen flex flex-col items-center font-sans fadein">
+
+<header class="w-full py-6 text-center shadow-md bg-[#1e1f29]/50 glass">
+    <h1 class="text-4xl font-bold tracking-widest uppercase " >
+    AvatarStudio
+    </h1>
 </header>
 
-<!-- Botão para voltar -->
-<a href="../home/index.html" class="mt-6 mb-4 px-5 py-2 rounded-lg bg-[#6272a4] hover:bg-[#7082c4] transition-colors font-semibold shadow-md">
+<a href="../home/index.html"
+   class="mt-6 mb-4 px-5 py-2 rounded-lg bg-[#6272a4] hover:bg-[#7082c4] transition-colors font-semibold shadow-md">
     ← Voltar ao Menu
 </a>
 
-<h1 id="avatarName" class="text-4xl font-bold tracking-wide mb-8 text-[#ff79c6] text-center">Carregando...</h1>
+<h1 id="avatarName"
+    class="text-4xl font-bold tracking-wide mb-8 text-[#ff79c6] text-center neon">
+    Carregando...
+</h1>
 
-<section class="w-[90%] max-w-[900px] bg-[#44475a] border border-[#6272a4] p-6 rounded-xl shadow-xl">
+<section class="w-[90%] max-w-[900px] glass p-8 rounded-2xl shadow-2xl border border-[#bd93f930] fadein">
 
-    <p id="avatarDesc" class="text-lg md:text-2xl opacity-90 leading-relaxed text-justify indent-8">
-        Carregando descrição...
-    </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        <img id="img1" class="rounded-lg shadow-xl w-full border border-[#6272a4]" />
-        <img id="img2" class="rounded-lg shadow-xl w-full border border-[#6272a4]" />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <img id="img1" class="rounded-lg shadow-xl w-full border border-[#6272a4] img-hover transition-all duration-300" />
+        <img id="img2" class="rounded-lg shadow-xl w-full border border-[#6272a4] img-hover transition-all duration-300" />
     </div>
 
 </section>
 
-<footer class="my-12 opacity-60 text-sm">© 2025 — Criado por Ana Luisa e JoaoAHaupt</footer>
-
+<footer class="my-12 opacity-60 text-sm">© 2025 — Criado por Ana Luisa & JoãoAHaupt</footer>
 
 <script>
     const params = new URLSearchParams(window.location.search);
-
-
     const rawName = params.get("nome");
-    console.log(rawName)
-    // transforma em slug: crimson-wanderer
+
     const safeName = rawName?.toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .replace(/\s+/g, "-")
         .replace(/[^a-z0-9-]/g, "");
 
-    fetch("../static/db/db.json") // AJUSTE O CAMINHO AQUI se necessário
+    fetch("../static/db/db.json")
         .then(res => res.json())
         .then(data => {
-
             const avatar = data.avatars.find(
                 a => a.nome.toLowerCase()
                     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                     .replace(/\s+/g, "-")
                     .replace(/[^a-z0-9-]/g, "") === safeName
             );
-            console.log(avatar);
+
             if (!avatar) {
                 document.body.innerHTML = `
-                    <div class="text-center mt-20">
+                    <div class="text-center mt-20 fadein">
                         <h1 class="text-6xl font-bold text-red-400 mb-4">404</h1>
                         <p class="text-xl opacity-80">Avatar não encontrado.</p>
                         <a href="../index.html" class="mt-6 inline-block px-5 py-2 bg-[#6272a4] rounded-lg">Voltar ao Menu</a>
@@ -71,16 +122,11 @@
             }
 
             document.getElementById("avatarName").textContent = avatar.nome;
-            document.getElementById("headerName").textContent = avatar.nome;
-            document.getElementById("avatarDesc").textContent = avatar.descricao;
-            document.getElementById("img1").src = `../static/images/art/${avatar.nome}.jpg`;
 
+            document.getElementById("img1").src = `../static/images/art/${avatar.nome}.jpg`;
             document.getElementById("img2").src = `../static/images/avatar/${avatar.nome}.png`;
         })
-        .catch(err => console.error("Erro ao carregar JSON:", err));
 </script>
-
-
 
 </body>
 </html>

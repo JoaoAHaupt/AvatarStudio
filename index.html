@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="text-[#f8f8f2]">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roblox Avatars Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Fundo com degradê animado */
+        body {
+            background: linear-gradient(130deg, #1e1f29, #282a36, #3a3c4e, #1e1f29);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Fade-in mais lento */
+        .fade-in {
+            animation: fadeIn 3.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Letreiro neon piscando estilo “neon velho” */
+        .neon-flicker {
+            animation: flicker 4s infinite;
+            text-shadow:
+                0 0 7px #bd93f9,
+                0 0 12px #bd93f9,
+                0 0 22px #bd93f9,
+                0 0 35px #ff79c6,
+                0 0 65px #ff79c6;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            5% { opacity: 0.4; }
+            6% { opacity: 1; }
+            7% { opacity: 0.2; }
+            8% { opacity: 1; }
+
+            20% { opacity: 0.9; }
+            21% { opacity: 0.5; }
+            22% { opacity: 1; }
+
+            63% { opacity: 1; }
+            64% { opacity: 0.3; }
+            65% { opacity: 1; }
+
+            70% { opacity: 0.95; }
+            71% { opacity: 0.4; }
+            72% { opacity: 1; }
+
+            90% { opacity: 0.8; }
+            91% { opacity: 0.3; }
+            92% { opacity: 1; }
+
+            100% { opacity: 1; }
+        }
+
+        /* Botão com glow */
+        .glow-btn {
+            transition: 0.3s;
+            box-shadow: 0 0 10px #6272a4;
+        }
+
+        .glow-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 15px #bd93f9, 0 0 25px #ff79c6;
+            background-color: #7082c4;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center text-center font-sans px-6 fade-in">
+
+<!-- Letreiro com efeito neon quebrado -->
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-wide mb-6 neon-flicker">
+    Roblox Avatars Hub
+</h1>
+
+<!-- Texto principal -->
+<p class="text-lg md:text-2xl max-w-[900px] opacity-95 leading-relaxed mb-10">
+    Avatares são muito mais do que pixels na tela.<br><br>
+    São ecos visuais do nosso estado interno — representações simbólicas
+    do que sentimos, imaginamos ou desejamos ser.
+    Quando a matéria deixa de ser o essencial, a identidade se expande:
+    <span class="text-[#ff79c6] font-semibold">no digital, você pode ser quem quiser</span>.
+    Aqui, cada avatar é uma janela para um universo próprio,
+    onde estética, emoção e criatividade se unem.
+</p>
+
+<!-- Botão -->
+<a href="home/index.html"
+   class="px-8 py-4 text-xl font-semibold rounded-xl bg-[#6272a4] glow-btn shadow-lg">
+    Entrar na Galeria →
+</a>
+
+<footer class="absolute bottom-6 opacity-60 text-sm">
+    © 2025 — Criado por Ana Luisa e JoaoAHaupt
+</footer>
+
+</body>
+</html>
